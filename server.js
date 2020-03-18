@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const campsiteRouter = require('./routes/campsiteRouter');
+const promotionRouter = require('./routes/promotionRouter');
 
 const hostname = 'localhost';
 const port = 3000;
@@ -11,6 +12,39 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use('/campsite', campsiteRouter);
+app.use('/promotion', promotionRouter);
+app.use('/partner', partnerRouter);
+
+app.use(express.static(__dirname + '/public'));
+
+app.use((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<html><body><h1>This is an Express Server</h1></body></html>');
+});
+
+app.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+/////////////////// TASK TWO /////////////////////
+app.use('/promotion', promotionRouter);
+
+app.use(express.static(__dirname + '/public'));
+
+app.use((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/html');
+    res.end('<html><body><h1>This is an Express Server</h1></body></html>');
+});
+
+app.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`);
+});
+
+/////////////////// TASK THREE ///////////////////
+
+app.use('/partner', promotionRouter);
 
 app.use(express.static(__dirname + '/public'));
 
