@@ -32,10 +32,11 @@ promotionRouter.route('/:promotionId')
     next();
 })
 .get((req, res) => {
-    res.end('Will send all the campsites to you');
+    res.end(`Will send details of the promotion: ${req.params.promotionId} to you`);
 })
 .post((req, res) => {
-    res.end(`Will add the promotion: ${req.body.name} with description: ${req.body.description}`);
+    res.statusCode = 403;
+    res.end(`POST operation not supported on /promotions/${req.params.promotionId}`);
 })
 .put((req, res) => {
     res.write(`Updating the campsite: ${req.params.promotionId}\n`);
@@ -43,7 +44,7 @@ promotionRouter.route('/:promotionId')
         with description: ${req.body.description}`);
 })
 .delete((req, res) => {
-    res.end('Deleting all promotions');
+    res.end(`Deleting promotion: ${req.params.promotionId}`);
 })
 
 module.exports = promotionRouter;
