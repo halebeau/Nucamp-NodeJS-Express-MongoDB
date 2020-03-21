@@ -31,10 +31,10 @@ campsiteRouter.route('/:campsiteId')
     res.setHeader('Content-Type', 'text/plain');
     next();
 })
-.get('/campsites', (req, res) => {
+.get((req, res) => {
     res.end(`Will send details of the campsite: ${req.params.campsiteId} to you`);
 })
-.post('/campsites', (req, res) => {
+.post((req, res) => {
     res.end(`POST operation not supported on /campsites/${req.params.campsiteId}`);
 })
 .put((req, res) => {
